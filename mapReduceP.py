@@ -4,17 +4,16 @@ import pandas as pd  # Library for data manipulation and analysis
 from collections import Counter  # Library for counting occurrences of elements
 import os  # Library for interacting with the operating system
 import time  # Library for measuring time
-import concurrent.futures  # Library for parallel processing
 
 print('\n---------------------------------- MapReduce with data partitioning ----------------------------------\n')
 
 # Create a folder named 'partitions' if it doesn't exist
-if not os.path.exists('main/partitions'):
-    os.mkdir('main/partitions')
+if not os.path.exists('partitions'):
+    os.mkdir('partitions')
 # else if the folder exists, delete all the files in it
 else:
-    for f in os.listdir('./main/partitions'):
-        os.remove(f'./main/partitions/{f}')
+    for f in os.listdir('./partitions'):
+        os.remove(f'./partitions/{f}')
 
 # Create a Faker instance
 fake = Faker()
@@ -41,11 +40,11 @@ partitions = dict(tuple(df.groupby('country')))
 
 # Save each partition to a separate CSV file in the 'partitions' folder
 for country, partition in partitions.items():
-    partition.to_csv(f'main/partitions/{country}.csv', index=False)
+    partition.to_csv(f'partitions/{country}.csv', index=False)
 
 # Get a list of all CSV files in the current directory
 #csv_files = [f'main/partitions/{f}' for f in os.listdir('./main/partitions') if f.endswith('.csv')]
-csv_file = 'main/partitions/Croatia.csv'
+csv_file = 'partitions/Croatia.csv'
 
 def process_file(csv_file):
     df = pd.read_csv(csv_file)

@@ -24,5 +24,4 @@ plt.ylabel('Data partitioning')
 
 plt.title('Comparison of throughput for MapReduce with and without data partitioning')
 
-plt.savefig('benchmark.png')
 plt.show()

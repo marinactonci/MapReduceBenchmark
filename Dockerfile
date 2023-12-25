@@ -1,9 +1,9 @@
-FROM python:3.8
+FROM python:3.12
 
 WORKDIR /app
 
-COPY ./main/. ./
+COPY . ./
 
-RUN pip install pandas faker matplotlib
+RUN pip install --no-cache-dir -r requirements.txt
 
 CMD python benchmark.py
