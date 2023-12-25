@@ -2,8 +2,8 @@ FROM python:3.8
 
 WORKDIR /app
 
-COPY mapReduceNP.py mapReduceP.py ./
+COPY ./main/. ./
 
-RUN pip install pandas faker
+RUN pip install pandas faker matplotlib
 
-CMD python mapReduceNP.py && python mapReduceP.py
+CMD python benchmark.py
